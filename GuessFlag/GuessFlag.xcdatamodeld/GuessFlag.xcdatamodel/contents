@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Player" representedClassName="Player">
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Player"/>
+        <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+    </entity>
+    <elements>
+        <element name="Player" positionX="-1503" positionY="-1341" width="128" height="75"/>
+    </elements>
+</model>
