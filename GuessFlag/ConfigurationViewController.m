@@ -36,7 +36,10 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     numberRow = [prefs integerForKey:@"numberRowKey"];
     
-    [self.pickerView selectRow:numberRow - MINIMUM_ROUND inComponent:0 animated:NO];
+    if (numberRow != 0) {
+       [self.pickerView selectRow:numberRow - MINIMUM_ROUND inComponent:0 animated:NO]; 
+    }
+
     self.numberOfRoundsLabel.text = [NSString stringWithFormat:@"%d",numberRow];
     if (numberRow == 0) {
         self.numberOfRoundsLabel.text = @"5";

@@ -145,20 +145,32 @@
     
     [self configureCell:cellE atIndexPath:indexPath];
     
+    [cellE setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cellE;
 }
 
 #pragma mark - TableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-	*/
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        Player *player = [players objectAtIndex:indexPath.row];
+        [players removeObject:player];
+   
+        [self.managedObjectContext deleteObject:player];
+        
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
